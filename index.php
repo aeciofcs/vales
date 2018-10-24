@@ -19,7 +19,6 @@ $app->get('/', function() {
 	$page = new PageAdmin();
 
 	$page->setTpl("index");
-
 });
 
 $app->get('/login', function() {
@@ -29,8 +28,7 @@ $app->get('/login', function() {
 		"footer" => false
 	]);
 
-	$page->setTpl("login");	
-
+	$page->setTpl("login");
 });
 
 $app->post('/login', function() {
@@ -47,7 +45,57 @@ $app->get('/logout', function() {
 
 	header("Location: /");
 	Exit;
+});
 
+$app->get('/users', function(){
+
+	User::verifyLogin();
+
+	$users = User::listAll();
+
+	$page = new PageAdmin();
+
+	$page->setTpl("users", [
+		'users' => $users
+	]);
+});
+
+$app->get('/users/create', function(){
+
+	User::verifyLogin();	
+
+	$page = new PageAdmin();
+
+	$page->setTpl("users-create");
+});
+
+$app->get('/users/:id_user', function($id_user){
+
+	User::verifyLogin();
+
+	//$users = User::listAll();
+
+	$page = new PageAdmin();
+
+	$page->setTpl("users-update");
+});
+
+$app->post('/users/create', function(){
+
+	User::verifyLogin();	
+	
+});
+
+$app->post('/users/:id_user', function($id_user){
+
+	User::verifyLogin();	
+	
+});
+
+$app->get('/users/:id_user/delete', function($id_user){
+
+	User::verifyLogin();	
+	
 });
 
 $app->run();

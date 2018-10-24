@@ -50,6 +50,14 @@ class User Extends Model {
 		$_SESSION[User::SESSION] = NULL;
 	}
 
+	public static function listAll(){
+		$sql = New Sql();
+		return $sql->select("SELECT * FROM tab_users user
+				             INNER JOIN tab_persons per USING(id_person)
+					         ORDER BY per.des_person");
+
+	}
+
 }
 
 ?>
