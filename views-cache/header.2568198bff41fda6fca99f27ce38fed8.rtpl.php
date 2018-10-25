@@ -174,7 +174,8 @@ desired effect
         <li class="header"></li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="/users"><i class="fa fa-users"></i> <span>Funcionários</span></a></li>
-        <li><a href="#"><i class="fa fa-money"></i> <span>Lançamento de Vales</span></a></li>
+        <li><a href="/vouchers"><i class="fa fa-database"></i> <span>Visualizar Vales Lançados</span></a></li>
+        <li><a href="/voucher/create"><i class="fa fa-money"></i> <span>Lançar Vale</span></a></li>
         <!-- <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
