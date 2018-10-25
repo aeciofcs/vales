@@ -3,11 +3,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Cadastrar Colaborador
+    Cadastrar Funcionário
   </h1>
   <ol class="breadcrumb">
     <li><a href="/"><i class="fa fa-dashboard"></i> Inicio</a></li>
-    <li><a href="/users">Colaboradores</a></li>
+    <li><a href="/users">Funcionários</a></li>
     <li class="active"><a href="/users/create">Cadastrar</a></li>
   </ol>
 </section>
@@ -19,9 +19,14 @@
   	<div class="col-md-12">
   		<div class="box box-success">
         <div class="box-header with-border">
-          <h3 class="box-title">Colaborador</h3>
+          <h3 class="box-title">Funcionário</h3>
         </div>
-        <!-- /.box-header -->
+        <!-- /.box-header -->        
+        <?php if( $MsgError != '' ){ ?>
+          <div class="alert alert-danger">
+            <?php echo htmlspecialchars( $MsgError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+          </div>
+        <?php } ?>
         <!-- form start -->
         <form role="form" action="/users/create" method="post">
           <div class="box-body">
@@ -43,7 +48,7 @@
             </div>
             <div class="form-group">
               <label for="desperson">Remuneração</label>
-              <input type="text" class="form-control" id="des_salario" name="des_salario" placeholder="Remuneração">
+              <input type="text" class="form-control" id="num_salario" name="num_salario" placeholder="Remuneração">
             </div>
             <div class="form-group">
               <label for="nrphone">Telefone</label>

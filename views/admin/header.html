@@ -99,11 +99,12 @@ desired effect
                 <img src="/res/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  Administrador - JSL
+                  <small>Cuidando da sua beleza.</small>
                 </p>
               </li>
               <!-- Menu Body -->
+              <!--
               <li class="user-body">
                 <div class="row">
                   <div class="col-xs-4 text-center">
@@ -116,8 +117,8 @@ desired effect
                     <a href="#">Friends</a>
                   </div>
                 </div>
-                <!-- /.row -->
-              </li>
+                
+              </li> -->
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
@@ -172,9 +173,9 @@ desired effect
         <!-- HEADER-->
         <li class="header"></li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="/users"><i class="fa fa-link"></i> <span>Colaboradores</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
+        <li class="active"><a href="/users"><i class="fa fa-users"></i> <span>Funcionários</span></a></li>
+        <li><a href="#"><i class="fa fa-money"></i> <span>Lançamento de Vales</span></a></li>
+        <!-- <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -184,7 +185,7 @@ desired effect
             <li><a href="#">Link in level 2</a></li>
             <li><a href="#">Link in level 2</a></li>
           </ul>
-        </li>
+        </li> -->
       </ul>
       <!-- /.sidebar-menu -->
     </section>

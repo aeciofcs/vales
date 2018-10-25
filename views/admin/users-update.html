@@ -3,7 +3,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Lista de Usuários
+    Funcionário
   </h1>
 </section>
 
@@ -14,27 +14,43 @@
   	<div class="col-md-12">
   		<div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Editar Usuário</h3>
+          <h3 class="box-title">Editar</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" action="/admin/users/{$user.iduser}" method="post">
+        <form role="form" action="/users/{$user.id_user}" method="post">
           <div class="box-body">
             <div class="form-group">
               <label for="desperson">Nome</label>
-              <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Digite o nome" value="{$user.desperson}">
+              <input type="text" class="form-control" id="des_person" name="des_person" placeholder="Digite o Nome" value="{$user.des_person}">
             </div>
             <div class="form-group">
-              <label for="deslogin">Login</label>
-              <input type="text" class="form-control" id="deslogin" name="deslogin" placeholder="Digite o login"  value="{$user.deslogin}">
+              <label for="desperson">N° do PIS</label>
+              <input type="text" class="form-control" id="des_pis" name="des_pis" placeholder="N° do PIS" value="{$user.des_pis}">
+            </div>
+            <div class="form-group">
+              <label for="desperson">CPF</label>
+              <input type="text" class="form-control" id="des_cpf" name="des_cpf" placeholder="N° do CPF" value="{$user.des_cpf}">
+            </div>
+            <div class="form-group">
+              <label for="desperson">RG</label>
+              <input type="text" class="form-control" id="des_rg" name="des_rg" placeholder="N° do RG" value="{$user.des_rg}">
+            </div>
+            <div class="form-group">
+              <label for="desperson">Remuneração</label>
+              <input type="text" class="form-control" id="num_salario" name="num_salario" placeholder="Remuneração" value="{$user.num_salario}">
             </div>
             <div class="form-group">
               <label for="nrphone">Telefone</label>
-              <input type="tel" class="form-control" id="nrphone" name="nrphone" placeholder="Digite o telefone"  value="{$user.nrphone}">
+              <input type="tel" class="form-control" id="nr_phone" name="nr_phone" placeholder="Digite o Telefone"  value="{$user.nr_phone}">
             </div>
             <div class="form-group">
               <label for="desemail">E-mail</label>
-              <input type="email" class="form-control" id="desemail" name="desemail" placeholder="Digite o e-mail" value="{$user.desemail}">
+              <input type="email" class="form-control" id="des_email" name="des_email" placeholder="Digite o E-mail" value="{$user.des_email}">
+            </div>
+            <div class="form-group">
+              <label for="deslogin">Usuário</label>
+              <input type="text" class="form-control" id="des_login" name="des_login" placeholder="Digite o Usuário"  value="{$user.des_login}">
             </div>
             <div class="checkbox">
               <label>

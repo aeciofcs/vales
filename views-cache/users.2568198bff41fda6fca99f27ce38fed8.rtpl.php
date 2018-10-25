@@ -2,12 +2,12 @@
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
 <section class="content-header">
-  <h1>
-    Colaboradores - JSL Distribuidora
+  <h1>    
+    JSL Distribuidora - Funcionários
   </h1>
   <ol class="breadcrumb">
     <li><a href="/"><i class="fa fa-dashboard"></i> Inicio</a></li>
-    <li class="active"><a href="/users">Colaboradores</a></li>
+    <li class="active"><a href="/users">Funcionários</a></li>
   </ol>
 </section>
 
@@ -34,7 +34,7 @@
                     <th>N° PIS</th>
                     <th>CPF</th>
                     <th>RG</th>
-                    <th>PROVENTO</th>
+                    <th>Remuneração</th>
                     <th style="width: 60px">Admin</th>
                     <th style="width: 140px">&nbsp;</th>
                   </tr>
