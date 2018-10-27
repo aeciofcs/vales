@@ -3,11 +3,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>    
-    JSL Distribuidora - Vales de Funcionários - Mês Outubro
+    JSL Distribuidora - Vales Lançados </br></br>
+    Olá, {function="getLogin('person')"}
   </h1>
   <ol class="breadcrumb">
     <li><a href="/"><i class="fa fa-dashboard"></i> Inicio</a></li>
-    <li class="active"><a href="/users">Vales</a></li>
+    <li class="active"><a href="/vouchers/user">Vales</a></li>
   </ol>
 </section>
 
@@ -17,20 +18,20 @@
   <div class="row">
   	<div class="col-md-12">
   		<div class="box box-primary">
-            <!--
+
             <div class="box-header">
-              <a href="/voucher/create" class="btn btn-success">CADASTRAR</a>
+              <a href="/voucher/create" class="btn btn-success">LANÇAR VALE</a>
             </div>
-            -->
+
             <div class="box-body no-padding">
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th style="width: 50px">#</th>
-                    <th style="width: 250px">Nome</th>
-                    <th style="width: 200px">Valor do Vale</th>                    
-                    <th style="width: 200px">Situação</th>
-                    <th style="width: 200px">Data Solicitada</th>
+                    <th style="width: 35px">#</th>
+                    <th style="width: 100px">Mês</th>
+                    <th style="width: 100px">Valor do Vale</th>                    
+                    <th style="width: 100px">Situação</th>
+                    <th style="width: 100px">Data Solicitada</th>
                     <!-- <th>Telefone</th> -->
                     <!-- <th>N° PIS</th> -->
                     <!-- <th>CPF</th> -->
@@ -41,10 +42,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {loop="$vouchers"}
+                  {loop="$user"}
                   <tr>
                     <td>{$value.id_voucher}</td>
-                    <td>{$value.des_person}</td>
+                    <td>{$value.dt_month_register}</td>
                     <td>{$value.int_valor}</td>
                     <td>{$value.des_status}</td>
                     <td>{$value.dt_register_voucher}</td>

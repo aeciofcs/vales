@@ -13,14 +13,15 @@ class User Extends Model {
 	public static function login($login, $password){
 
 		$sql     = new Sql();
-		$results = $sql->select("SELECT * FROM tab_users 
-			                     WHERE des_login = :des_login", [
+		$results = $sql->select("SELECT * FROM tab_users us
+								 INNER JOIN tab_persons pe USING(id_person)
+			                     WHERE us.des_login = :des_login", [
 			                     	":des_login" => $login ]);		
 		if ( !count($results) > 0 ) {
 			throw new \Exception("Usuário inexistente ou senha inválida.");
 		}
 
-		$data = $results[0]; //Dados do usuário.
+		$data = $results[0]; //Dados do usuário.		
 
 		if ( password_verify($password, $data['des_password']) ) {
 			$user = New User();
@@ -36,13 +37,19 @@ class User Extends Model {
 		}
 	}
 
-	public static function verifyLogin($inadmin = true){
+	public static function verifyLogin(){
 		if ( !isset($_SESSION[User::SESSION]) || 
 			 !$_SESSION[User::SESSION] || 
-			 !(int)$_SESSION[User::SESSION]['id_user'] > 0 ||
-			 (bool)$_SESSION[User::SESSION]['inadmin'] !== $inadmin
+			 !(int)$_SESSION[User::SESSION]['id_user'] > 0 
 		   ) {		   	
 		   	header("Location: /login");
+		    Exit;
+		}		
+	}
+
+	public static function verifyAdmin(){
+		if ((int)$_SESSION[User::SESSION]['inadmin'] === 0 /*&& ($_SERVER['REQUEST_URI'] === "/vouchers")*/ ){
+			header("Location: /vouchers/user");
 		    Exit;
 		}
 	}
@@ -101,13 +108,11 @@ class User Extends Model {
 		$this->setData($results[0]);
 	}
 
-	
-
 	public function update(){
 		$sql     = New Sql();		
 		$results = $sql->select("CALL sp_tab_usersupdate_save(:id_user, :des_person, :des_email, 
 								  :nr_phone, :des_pis, :des_cpf, :des_rg, 
-								  :num_salario, :des_login, :des_password, :inadmin)", [
+								  :num_salario, :des_login, :inadmin)", [
 								  	":id_user"      => $this->getid_user(),
 			                        ":des_person"   => $this->getdes_person(),
 			                        ":des_email"    => $this->getdes_email(),
@@ -117,7 +122,6 @@ class User Extends Model {
 			                        ":des_rg"       => $this->getdes_rg(),
 			                        ":num_salario"  => $this->getnum_salario(),
 			                        ":des_login"    => $this->getdes_login(),
-			                        ":des_password" => User::getPasswordHash($this->getdes_password()),
 			                        ":inadmin"      => $this->getinadmin() ]);
 		$this->setData($results[0]);
 	}
@@ -160,6 +164,14 @@ class User Extends Model {
 
 	public static function getPasswordHash($password){
 		return password_hash($password, PASSWORD_DEFAULT, [ 'cost' => 12 ] );
+	}
+
+	public static function getFromSession(){
+		$user = new User();
+		if( isset($_SESSION[User::SESSION]) && $_SESSION[User::SESSION]['id_user'] > 0 ){			
+			$user->setData($_SESSION[User::SESSION]);
+		}
+		return $user;
 	}
 
 

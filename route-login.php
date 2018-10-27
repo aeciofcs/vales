@@ -5,10 +5,8 @@ use \Classes\Model\User;
 
 $app->get('/', function() {
 
-	User::verifyLogin();
-
+	User::verifyLogin();	
 	
-
 	$page = new PageAdmin();
 
 	$page->setTpl("index");

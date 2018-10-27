@@ -6,6 +6,7 @@ use \Classes\Model\User;
 $app->get('/users', function(){
 
 	User::verifyLogin();
+	User::verifyAdmin();
 
 	$users = User::listAll();
 
@@ -18,7 +19,8 @@ $app->get('/users', function(){
 
 $app->get('/users/create', function(){
 
-	User::verifyLogin();	
+	User::verifyLogin();
+	User::verifyAdmin();
 
 	$page = new PageAdmin();
 
@@ -30,6 +32,7 @@ $app->get('/users/create', function(){
 $app->get('/users/:id_user/delete', function($id_user){
 
 	User::verifyLogin();
+	User::verifyAdmin();
 
 	$user = New User();
 	$user->get((int)$id_user);
@@ -42,6 +45,7 @@ $app->get('/users/:id_user/delete', function($id_user){
 $app->get('/users/:id_user', function($id_user){
 
 	User::verifyLogin();
+	User::verifyAdmin();
 
 	$user = New User();
 	$user->get((int)$id_user);
@@ -56,6 +60,7 @@ $app->get('/users/:id_user', function($id_user){
 $app->post('/users/create', function(){
 
 	User::verifyLogin();
+	User::verifyAdmin();
 
 	$user = New User();
 	if ( !isset($_POST['des_person']) || $_POST['des_person'] === '' ) {
@@ -84,7 +89,7 @@ $app->post('/users/create', function(){
 		Exit;
 	}
 	$_POST['inadmin'] = (isset($_POST['inadmin'])) ? 1 : 0;
-	$user->setData($_POST);	
+	$user->setData($_POST);
 	$user->save();
 
 	header("Location: /users");
@@ -94,6 +99,7 @@ $app->post('/users/create', function(){
 $app->post('/users/:id_user', function($id_user){
 
 	User::verifyLogin();
+	User::verifyAdmin();
 
 	$user = New User();
 	$user->get((int)$id_user);

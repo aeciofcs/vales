@@ -9,6 +9,7 @@ $app = new Slim();
 
 $app->config('debug', true);
 
+require_once("functions.php");
 require_once("route-login.php");
 require_once("route-users.php");
 require_once("route-vouchers.php");

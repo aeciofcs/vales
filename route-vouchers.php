@@ -6,6 +6,7 @@ use \Classes\Model\Voucher;
 
 $app->get('/vouchers', function(){
 	User::verifyLogin();
+	User::verifyAdmin();
 
 	$vouchers = Voucher::listAll();
 
@@ -41,8 +42,19 @@ $app->post('/voucher/create', function(){
 	//$user = New User();
 	//$user->get((int)$_SESSION[User::SESSION]['id_user']);
 
-	header("Location: /vouchers");
+	header("Location: /vouchers/user");
 	Exit;
+});
+
+$app->get('/vouchers/user', function(){
+	User::verifyLogin();
+
+	$user = New User();
+	$user->get((int)$_SESSION[User::SESSION]['id_user']);
+
+	$page = New PageAdmin();
+	$page->setTpl("vouchers-user", [
+		'user'     => $user->getid_user() ]);
 });
 
 

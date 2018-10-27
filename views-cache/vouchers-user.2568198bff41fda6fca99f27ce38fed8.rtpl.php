@@ -3,11 +3,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>    
-    JSL Distribuidora - Vales de Funcionários - Mês Outubro
+    JSL Distribuidora - Vales Lançados </br></br>
+    Olá, <?php echo getLogin('person'); ?>
   </h1>
   <ol class="breadcrumb">
     <li><a href="/"><i class="fa fa-dashboard"></i> Inicio</a></li>
-    <li class="active"><a href="/users">Vales</a></li>
+    <li class="active"><a href="/vouchers/user">Vales</a></li>
   </ol>
 </section>
 
@@ -17,20 +18,20 @@
   <div class="row">
   	<div class="col-md-12">
   		<div class="box box-primary">
-            <!--
+
             <div class="box-header">
-              <a href="/voucher/create" class="btn btn-success">CADASTRAR</a>
+              <a href="/voucher/create" class="btn btn-success">LANÇAR VALE</a>
             </div>
-            -->
+
             <div class="box-body no-padding">
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th style="width: 50px">#</th>
-                    <th style="width: 250px">Nome</th>
-                    <th style="width: 200px">Valor do Vale</th>                    
-                    <th style="width: 200px">Situação</th>
-                    <th style="width: 200px">Data Solicitada</th>
+                    <th style="width: 35px">#</th>
+                    <th style="width: 100px">Mês</th>
+                    <th style="width: 100px">Valor do Vale</th>                    
+                    <th style="width: 100px">Situação</th>
+                    <th style="width: 100px">Data Solicitada</th>
                     <!-- <th>Telefone</th> -->
                     <!-- <th>N° PIS</th> -->
                     <!-- <th>CPF</th> -->
@@ -41,10 +42,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php $counter1=-1;  if( isset($vouchers) && ( is_array($vouchers) || $vouchers instanceof Traversable ) && sizeof($vouchers) ) foreach( $vouchers as $key1 => $value1 ){ $counter1++; ?>
+                  <?php $counter1=-1;  if( isset($user) && ( is_array($user) || $user instanceof Traversable ) && sizeof($user) ) foreach( $user as $key1 => $value1 ){ $counter1++; ?>
                   <tr>
                     <td><?php echo htmlspecialchars( $value1["id_voucher"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                    <td><?php echo htmlspecialchars( $value1["des_person"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                    <td><?php echo htmlspecialchars( $value1["dt_month_register"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["int_valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["des_status"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["dt_register_voucher"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
