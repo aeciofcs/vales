@@ -14,7 +14,9 @@
 
     <!-- Main content -->
     <section class="content">
-      <?php echo getLogin('inadmin'); ?>
+      <!-- <?php echo getLogin('inadmin'); ?> -->
+      
+
       
       <!-- Your Page Content Here -->
 
