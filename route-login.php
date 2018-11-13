@@ -9,9 +9,9 @@ $app->get('/', function() {
 
 	User::verifyLogin();
 	
-	/*
-	$data = Ponto::loadFromUsers();	
 	
+	//$data = Ponto::loadFromUsers();	
+	/*
 	foreach ($data as $user) {		
 		foreach ($user as $key => $value) {
 			if ($key === 'name') {
@@ -21,9 +21,9 @@ $app->get('/', function() {
 				Echo "$key => $value<br>";
 			}			
 		}		
-	}
-	
-	Exit;*/
+	}*/
+	//echo json_encode((array)$data);
+	//Exit;
 	$page = new PageAdmin();
 
 	$page->setTpl("index");

@@ -3,7 +3,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>    
-    JSL Distribuidora - Vales de Funcionários - Mês Outubro
+    JSL Distribuidora - Vales de Funcionários - Mês <?php echo htmlspecialchars( $month, ENT_COMPAT, 'UTF-8', FALSE ); ?>
   </h1>
   <ol class="breadcrumb">
     <li><a href="/"><i class="fa fa-dashboard"></i> Inicio</a></li>
@@ -45,10 +45,11 @@
                   <tr>
                     <td><?php echo htmlspecialchars( $value1["id_voucher"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["des_person"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                    <td><?php echo htmlspecialchars( $value1["int_valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                    <td>R$ <?php echo formatPrice($value1["int_valor"]); ?></td>                      
                     <td><?php echo htmlspecialchars( $value1["des_status"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                    <td><?php echo htmlspecialchars( $value1["dt_register_voucher"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                    <td><?php echo formatDate($value1["dt_register_voucher"]); ?></td>
                     <td>
+                      <a href="#" class="btn btn-success btn-xs"> PAGAR</a>
                       <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
                       <a href="#" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>

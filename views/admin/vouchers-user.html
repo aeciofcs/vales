@@ -31,7 +31,7 @@
                     <th style="width: 100px">Mês</th>
                     <th style="width: 100px">Valor do Vale</th>                    
                     <th style="width: 100px">Situação</th>
-                    <th style="width: 100px">Data Solicitada</th>
+                    <th style="width: 150px">Data Solicitada</th>
                     <!-- <th>Telefone</th> -->
                     <!-- <th>N° PIS</th> -->
                     <!-- <th>CPF</th> -->
@@ -42,13 +42,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {loop="$user"}
+                  {loop="$voucher_user"}
                   <tr>
                     <td>{$value.id_voucher}</td>
-                    <td>{$value.dt_month_register}</td>
-                    <td>{$value.int_valor}</td>
+                    <td>{function="formatMonth($value.month_register)"}</td>
+                    <td>R$ {function="formatPrice($value.int_valor)"}</td>
                     <td>{$value.des_status}</td>
-                    <td>{$value.dt_register_voucher}</td>
+                    <td>{function="formatDate($value.dt_register_voucher)"}</td>
                     <td>
                       <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
                       <a href="#" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>

@@ -3,7 +3,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>    
-    JSL Distribuidora - Vales de Funcionários - Mês Outubro
+    JSL Distribuidora - Vales de Funcionários - Mês {$month}
   </h1>
   <ol class="breadcrumb">
     <li><a href="/"><i class="fa fa-dashboard"></i> Inicio</a></li>
@@ -45,10 +45,11 @@
                   <tr>
                     <td>{$value.id_voucher}</td>
                     <td>{$value.des_person}</td>
-                    <td>{$value.int_valor}</td>
+                    <td>R$ {function="formatPrice($value.int_valor)"}</td>                      
                     <td>{$value.des_status}</td>
-                    <td>{$value.dt_register_voucher}</td>
+                    <td>{function="formatDate($value.dt_register_voucher)"}</td>
                     <td>
+                      <a href="#" class="btn btn-success btn-xs"> PAGAR</a>
                       <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
                       <a href="#" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>

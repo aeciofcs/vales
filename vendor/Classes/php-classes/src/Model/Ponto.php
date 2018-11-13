@@ -42,8 +42,11 @@ class Ponto Extends Model{
 		$url        = $link.$link_users;
 
 		$users = ["limit"  => 100, 
-				  "offset" => 0];
-		$data_json = json_encode($users);
+				  "offset" => 0];		
+		   
+		$users_pis = ["users_pis"=>[16056726720, 12532910919]];
+		
+		$data_json = json_encode($users_pis);
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //informa que tem retorno;
@@ -56,7 +59,8 @@ class Ponto Extends Model{
 
 		curl_close($ch);
 
-		return $data['users'];
+		//return $data['users'];
+		return $data;
 	}
 
 

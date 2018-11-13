@@ -31,7 +31,7 @@
                     <th style="width: 100px">Mês</th>
                     <th style="width: 100px">Valor do Vale</th>                    
                     <th style="width: 100px">Situação</th>
-                    <th style="width: 100px">Data Solicitada</th>
+                    <th style="width: 150px">Data Solicitada</th>
                     <!-- <th>Telefone</th> -->
                     <!-- <th>N° PIS</th> -->
                     <!-- <th>CPF</th> -->
@@ -42,13 +42,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php $counter1=-1;  if( isset($user) && ( is_array($user) || $user instanceof Traversable ) && sizeof($user) ) foreach( $user as $key1 => $value1 ){ $counter1++; ?>
+                  <?php $counter1=-1;  if( isset($voucher_user) && ( is_array($voucher_user) || $voucher_user instanceof Traversable ) && sizeof($voucher_user) ) foreach( $voucher_user as $key1 => $value1 ){ $counter1++; ?>
                   <tr>
                     <td><?php echo htmlspecialchars( $value1["id_voucher"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                    <td><?php echo htmlspecialchars( $value1["dt_month_register"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                    <td><?php echo htmlspecialchars( $value1["int_valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                    <td><?php echo formatMonth($value1["month_register"]); ?></td>
+                    <td>R$ <?php echo formatPrice($value1["int_valor"]); ?></td>
                     <td><?php echo htmlspecialchars( $value1["des_status"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                    <td><?php echo htmlspecialchars( $value1["dt_register_voucher"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                    <td><?php echo formatDate($value1["dt_register_voucher"]); ?></td>
                     <td>
                       <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
                       <a href="#" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>

@@ -9,10 +9,12 @@ $app->get('/vouchers', function(){
 	User::verifyAdmin();
 
 	$vouchers = Voucher::listAll();
+	$mes      = formatMonth(date('m'));	
 
 	$page = New PageAdmin();
 	$page->setTpl("vouchers", [
-		'vouchers' => $vouchers
+		'vouchers' => $vouchers,
+		'month'    => $mes
 	]);
 
 });
@@ -36,11 +38,26 @@ $app->post('/voucher/create', function(){
 	if (!isset($_POST['int_valor']) || $_POST['int_valor'] === '') {
 		Voucher::setError("Digite o valor do vale.");
 		header("Location: /voucher/create");
-		Exit;		
+		Exit;
 	}
+
+	$user   = New User();
+	$user->get((int)$_SESSION[User::SESSION]['id_user']);
+	$limite = ( $user->getnum_salario() * 0.4 );
+
+	if ((int)$_POST['int_valor'] > (int)$limite) {
+		Voucher::setError("O valor do vale é maior do que os 30% do seu salário.");
+		header("Location: /voucher/create");
+		Exit;
+	}
+
+	$voucher = New Voucher();
+
+	$voucher->setid_user($user->getid_user());
+	$voucher->setid_status(1);
+	$voucher->setint_valor($_POST['int_valor']);
 	
-	//$user = New User();
-	//$user->get((int)$_SESSION[User::SESSION]['id_user']);
+	$voucher->save();
 
 	header("Location: /vouchers/user");
 	Exit;
@@ -52,9 +69,12 @@ $app->get('/vouchers/user', function(){
 	$user = New User();
 	$user->get((int)$_SESSION[User::SESSION]['id_user']);
 
+	$vouchers = New Voucher();
+	$data     = $vouchers->listAllUser($user->getid_user());	
+
 	$page = New PageAdmin();
 	$page->setTpl("vouchers-user", [
-		'user'     => $user->getid_user() ]);
+		'voucher_user' => $data ]);
 });
 
 
