@@ -41,7 +41,7 @@ class Voucher Extends Model {
 		$results = $sql->select("CALL sp_tab_vouchers_save(:id_user, :id_status, :int_valor)", [
 			                                             	":id_user"   => $this->getid_user(),  //
 			                                            	":id_status" => $this->getid_status(), //
-			                                            	":int_valor" => $this->getint_valor()  ]); //
+			                                            	":int_valor" => Voucher::formatValueToDecimal($this->getint_valor())  ]); //
 		$this->setData($results[0]);
 	}
 
@@ -54,6 +54,30 @@ class Voucher Extends Model {
 			                            INNER JOIN tab_vouchersstatus st USING(id_status) 
 			                            WHERE vo.id_user = :id_user", [ 
 			                     		       ':id_user' => $user    ]);		
+	}
+
+	public function get($id_voucher, $id_user){
+		$sql     = New Sql();
+		$results = $sql->select("SELECT * FROM tab_vouchers us								 
+					             WHERE us.id_voucher = :id_voucher AND 
+					                   us.id_user    = :id_user", [
+					  	         		":id_voucher" => $id_voucher,
+					  	         		":id_user"    => $id_user ]);
+		$this->setData($results[0]);
+	}
+
+	public function update(){
+		$sql     = New Sql();		
+		$results = $sql->select("CALL sp_tab_vouchersupdate_save(:id_voucher, :id_user, :int_valor)", [ 
+													        		 ":id_voucher" => $this->getid_voucher(),
+															         ":id_user"    => $this->getid_user(),
+															         ":int_valor"  => Voucher::formatValueToDecimal($this->getint_valor()) ]);
+		$this->setData($results[0]);
+	}
+
+	public static function formatValueToDecimal($value):float{		
+		$value = str_replace(',','.',$value);		
+		return $value;
 	}
 
 }

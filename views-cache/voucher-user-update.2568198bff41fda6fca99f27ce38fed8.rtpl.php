@@ -3,12 +3,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Lancamento de Vale
+    Alterar Lancamento de Vale
   </h1>
   <ol class="breadcrumb">
     <li><a href="/"><i class="fa fa-dashboard"></i> Inicio</a></li>
-    <li><a href="/vouchers/user">Vales</a></li>
-    <li class="active"><a href="/vouchers/user/create">Lançar</a></li>
+    <li><a href="/vouchers">Vales</a></li>
+    <li class="active"><a href="#">Alterar</a></li>
   </ol>
 </section>
 
@@ -28,16 +28,16 @@
             <?php echo htmlspecialchars( $MsgError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
           </div>
         <?php } ?>
-        <form role="form" action="/vouchers/user/create" method="post">
+        <form role="form" action="/vouchers/user/<?php echo htmlspecialchars( $voucher["id_voucher"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post">
           <div class="box-body">
             <div class="form-group">
-              <label>VALOR DO VALE</label>
-              <input type="text" class="form-control" id="int_valor" name="int_valor" placeholder="Digite o valor do vale">
+              <label for="desperson">VALOR DO VALE</label>
+              <input type="text" class="form-control" id="int_valor" name="int_valor" value=<?php echo formatPrice($voucher["int_valor"]); ?>>
             </div>                                  
           </div>
           <!-- /.box-body -->
           <div class="box-footer">
-            <button type="submit" class="btn btn-success">Lançar</button>
+            <button type="submit" class="btn btn-success">Alterar</button>
           </div>
         </form>
       </div>

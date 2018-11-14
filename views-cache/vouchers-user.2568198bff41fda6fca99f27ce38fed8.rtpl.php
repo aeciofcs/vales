@@ -20,7 +20,7 @@
   		<div class="box box-primary">
 
             <div class="box-header">
-              <a href="/voucher/create" class="btn btn-success">LANÇAR VALE</a>
+              <a href="/vouchers/user/create" class="btn btn-success">LANÇAR VALE</a>
             </div>
 
             <div class="box-body no-padding">
@@ -50,7 +50,7 @@
                     <td><?php echo htmlspecialchars( $value1["des_status"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo formatDate($value1["dt_register_voucher"]); ?></td>
                     <td>
-                      <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
+                      <a href="/vouchers/user/<?php echo htmlspecialchars( $value1["id_voucher"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
                       <a href="#" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>
                   </tr> 
