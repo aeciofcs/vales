@@ -34,6 +34,23 @@ $app->get('/vouchers/user', function(){
 		'voucher_user' => $data ]);
 });
 
+$app->get('/vouchers/user/:id_voucher/delete', function($id_voucher) {
+	//Deletar vale do usuario.	
+	User::verifyLogin();
+	
+	$user = New User();
+	$user->get((int)$_SESSION[User::SESSION]['id_user']);
+
+	$voucher = new Voucher();	
+	$voucher->get((int)$id_voucher, $user->getid_user());
+	
+	$voucher->delete();
+	
+	//Redireciona para a lista de vales do usuário.
+	header("Location: /vouchers/user");
+	exit;
+});
+
 $app->get('/vouchers/user/create', function(){
 	//Abre a tela para lançamento do vale.
 	User::verifyLogin();
@@ -99,6 +116,7 @@ $app->get('/vouchers/user/:id_voucher', function($id_voucher){
 });
 
 $app->post('/vouchers/user/:id_voucher', function($id_voucher){
+	//Gravação da alteração do vale feita pelo usuario.
 	User::verifyLogin();
 
 	if (!isset($_POST['int_valor']) || $_POST['int_valor'] === '') {

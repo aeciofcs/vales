@@ -80,6 +80,13 @@ class Voucher Extends Model {
 		return $value;
 	}
 
+	public function delete(){
+		$sql = new Sql();
+		$sql->query("CALL sp_tab_vouchers_delete(:id_voucher, :id_user)", [
+					                  	         ":id_voucher" => $this->getid_voucher(),
+					                             ":id_user"    => $this->getid_user() ]);
+	}
+
 }
 
 ?>

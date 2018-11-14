@@ -51,7 +51,7 @@
                     <td>{function="formatDate($value.dt_register_voucher)"}</td>
                     <td>
                       <a href="/vouchers/user/{$value.id_voucher}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
-                      <a href="#" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                      <a href="/vouchers/user/{$value.id_voucher}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>
                   </tr> 
                   {/loop}
