@@ -13,15 +13,15 @@
 
 <!-- Main content -->
 <section class="content">
-
+  <!--<h2><label style="width: 200px"> VALES A PAGAR </label></h2>-->
   <div class="row">
   	<div class="col-md-12">
   		<div class="box box-primary">
-            <!--
-            <div class="box-header">
-              <a href="/voucher/create" class="btn btn-success">CADASTRAR</a>
-            </div>
-            -->
+            
+            <!--<div class="box-header">-->
+              
+            <!--</div>-->
+            
             <div class="box-body no-padding">
               <table class="table table-striped">
                 <thead>
@@ -42,6 +42,7 @@
                 </thead>
                 <tbody>
                   {loop="$vouchers"}
+                    {if="($value.des_status === 'Em Aberto')"}
                   <tr>
                     <td>{$value.id_voucher}</td>
                     <td>{$value.des_person}</td>
@@ -49,11 +50,12 @@
                     <td>{$value.des_status}</td>
                     <td>{function="formatDate($value.dt_register_voucher)"}</td>
                     <td>
-                      <a href="#" class="btn btn-success btn-xs"> PAGAR</a>
-                      <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
-                      <a href="#" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                      <a href="/vouchers/pay/{$value.id_voucher}/{$value.id_user}" onclick="return confirm('O VALE FOI ENTREGUE AO FUNCIONÁRIO?')" class="btn btn-success btn-xs"> PAGAR</a>
+                      <!-- <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a> -->
+                      <a href="/vouchers/{$value.id_voucher}/{$value.id_user}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>
                   </tr> 
+                    {/if}
                   {/loop}
                   <!-- {loop="$users"}
                   <tr>
@@ -75,10 +77,53 @@
                   {/loop} -->
                 </tbody>
               </table>
-            </div>
+            </div>            
             <!-- /.box-body -->
           </div>
   	</div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-primary">
+            
+            <!--<div class="box-header">-->
+              
+            <!--</div>-->
+            
+            <div class="box-body no-padding">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th style="width: 50px">#</th>
+                    <th style="width: 250px">Nome</th>
+                    <th style="width: 200px">Valor do Vale</th>                    
+                    <th style="width: 200px">Situação</th>
+                    <th style="width: 200px">Data Solicitada</th>                    
+                  </tr>
+                </thead>
+                <tbody>
+                  {loop="$vouchers"}
+                    {if="($value.des_status === 'Pago')"}
+                  <tr>
+                    <td>{$value.id_voucher}</td>
+                    <td>{$value.des_person}</td>
+                    <td>R$ {function="formatPrice($value.int_valor)"}</td>                      
+                    <td>{$value.des_status}</td>
+                    <td>{function="formatDate($value.dt_register_voucher)"}</td>
+                    <td></td>
+                    <td></td>                    
+                  </tr> 
+                    {/if}                 
+                  {/loop}
+
+                </tbody>
+              </table>
+            </div>            
+            <!-- /.box-body -->
+          </div>
+    </div>
   </div>
 
 </section>

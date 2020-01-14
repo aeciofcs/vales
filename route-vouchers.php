@@ -4,12 +4,46 @@ use \Classes\PageAdmin;
 use \Classes\Model\User;
 use \Classes\Model\Voucher;
 
+$app->get('/vouchers/:id_voucher/:id_user/delete', function($id_voucher, $id_user){
+	//Rotina para o usuário administrador deletar o vale de qualquer funcionário.
+	User::verifyLogin();
+	User::verifyAdmin();	
+
+	$vouchers = New Voucher();
+	$vouchers->get((int)$id_voucher, (int)$id_user);	
+	
+	$vouchers->delete();
+
+	//Redireciona para a lista de vales do usuário.
+	header("Location: /vouchers");
+	exit;
+
+});
+
+$app->get('/vouchers/pay/:id_voucher/:id_user', function($id_voucher, $id_user){
+	//Rotina para o usuário administrador pagar o vale ao funcionário.
+	User::verifyLogin();
+	User::verifyAdmin();	
+
+	$vouchers = New Voucher();
+	$vouchers->get((int)$id_voucher, (int)$id_user);
+	
+	$vouchers->payment();
+
+	//Redireciona para a lista de vales do usuário.
+	header("Location: /vouchers");
+	exit;
+
+});
+
 $app->get('/vouchers', function(){
 	//Lista todos os vales de todos os funcionarios para o usuário administrador.
 	User::verifyLogin();
 	User::verifyAdmin();
 
 	$vouchers = Voucher::listAll();
+	//echo json_encode((array)$vouchers);
+	//exit;
 	$mes      = formatMonth(date('m'));	
 
 	$page = New PageAdmin();
@@ -19,6 +53,8 @@ $app->get('/vouchers', function(){
 	]);
 });
 
+
+//Rotina para vales dos usuários.
 $app->get('/vouchers/user', function(){
 	//Listagem de vales para cada usuário.
 	User::verifyLogin();
@@ -146,7 +182,6 @@ $app->post('/vouchers/user/:id_voucher', function($id_voucher){
 	header("Location: /vouchers/user");
 	Exit;
 });
-
 
 
 

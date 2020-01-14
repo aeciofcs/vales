@@ -13,7 +13,7 @@ class Voucher Extends Model {
 
 		$sql = new Sql();
 		return $sql->select("SELECT vou.id_voucher, pe.des_person, vou.int_valor, voust.des_status,  
-									vou.dt_register As dt_register_voucher                                    
+									vou.dt_register As dt_register_voucher, vou.id_user                                  
 							 FROM tab_vouchers vou 
 							 INNER JOIN tab_users us USING(id_user)
 							 INNER JOIN tab_persons pe USING(id_person)
@@ -83,6 +83,13 @@ class Voucher Extends Model {
 	public function delete(){
 		$sql = new Sql();
 		$sql->query("CALL sp_tab_vouchers_delete(:id_voucher, :id_user)", [
+					                  	         ":id_voucher" => $this->getid_voucher(),
+					                             ":id_user"    => $this->getid_user() ]);
+	}
+
+	public function payment(){
+		$sql = new Sql();
+		$sql->query("CALL sp_tab_vouchers_payment(:id_voucher, :id_user)", [
 					                  	         ":id_voucher" => $this->getid_voucher(),
 					                             ":id_user"    => $this->getid_user() ]);
 	}
